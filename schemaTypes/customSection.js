@@ -1,59 +1,67 @@
 // export default {
-//   name: "hero",
-//   title: "Hero Section",
+//   name: "customSection",
+//   title: "Custom Section",
 //   type: "document",
 
 //   fields: [
 //     {
-//       name: "name",
-//       title: "Name (Rich Text)",
+//       name: "title",
+//       title: "Section Title",
+//       type: "string",
+//     },
+
+//     {
+//       name: "slug",
+//       title: "Section Slug",
+//       type: "string",
+//       description: "Example: gallery, testimonials",
+//     },
+
+//     {
+//       name: "content",
+//       title: "Content (Rich Builder)",
 //       type: "array",
-//       of: [richTextBlock()],
-//     },
+//       of: [
+//         richTextBlock(),
 
-//     {
-//       name: "role",
-//       title: "Role (Rich Text)",
-//       type: "array",
-//       of: [richTextBlock()],
-//     },
+//         /* 🔥 Single Image */
+//         {
+//           type: "image",
+//           options: { hotspot: true },
+//         },
 
+//         /* 🔥 Image Gallery */
+//         {
+//   type: "object",
+//   name: "imageGallery",
+//   title: "Image Gallery",
+//   fields: [
 //     {
-//       name: "tagline",
-//       title: "Tagline (Rich Text)",
-//       type: "array",
-//       of: [richTextBlock()],
-//     },
-
-//     {
-//       name: "heroImage",
-//       title: "Hero Image",
-//       type: "image",
-//       options: { hotspot: true },
-//     },
-
-//     {
-//       name: "imageShape",
-//       title: "Hero Image Shape",
+//       name: "shape",
+//       title: "Image Shape",
 //       type: "string",
 //       options: {
 //         list: [
-//           { title: "Circle", value: "circle" },
-//           { title: "Square", value: "square" },
 //           { title: "Rectangle", value: "rectangle" },
-//           { title: "Star", value: "star" },
+//           { title: "Square", value: "square" },
+//           { title: "Circle", value: "circle" },
 //           { title: "Diamond", value: "diamond" },
+//           { title: "Hexagon", value: "hexagon" },
+//           { title: "Star", value: "star" }
 //         ],
-//         layout: "radio",
+//         layout: "radio"
 //       },
-//       initialValue: "circle",
+//       initialValue: "rectangle"
 //     },
-
 //     {
-//       name: "resumeFile",
-//       title: "Resume PDF",
-//       type: "file",
-//       options: { accept: ".pdf" },
+//       name: "images",
+//       title: "Images",
+//       type: "array",
+//       of: [{ type: "image", options: { hotspot: true } }]
+//     }
+//   ]  
+//         }
+//       ],
 //     },
 
 //     {
@@ -65,11 +73,12 @@
 //   ],
 // };
 
+
+// /* 🔥 HERO LEVEL RICH TEXT */
 // function richTextBlock() {
 //   return {
 //     type: "block",
 
-//     // ✅ ENABLE NORMAL + HEADINGS
 //     styles: [
 //       { title: "Normal", value: "normal" },
 //       { title: "Heading 1", value: "h1" },
@@ -79,16 +88,13 @@
 //     ],
 
 //     marks: {
-//       // ✅ ENABLE DECORATORS
 //       decorators: [
 //         { title: "Bold", value: "strong" },
 //         { title: "Italic", value: "em" },
 //         { title: "Underline", value: "underline" },
 //         { title: "Strike", value: "strike-through" },
-//         { title: "Code", value: "code" },
 //       ],
 
-//       // ✅ YOUR CUSTOM POWER FEATURES
 //       annotations: [
 //         {
 //           name: "textColor",
@@ -110,6 +116,7 @@
 //             },
 //           ],
 //         },
+
 //         {
 //           name: "fontSize",
 //           title: "Font Size",
@@ -120,15 +127,16 @@
 //               type: "string",
 //               options: {
 //                 list: [
-//                   { title: "Small", value: "20px" },
-//                   { title: "Medium", value: "28px" },
-//                   { title: "Large", value: "36px" },
-//                   { title: "XL", value: "48px" },
+//                   { title: "Small", value: "14px" },
+//                   { title: "Medium", value: "18px" },
+//                   { title: "Large", value: "24px" },
+//                   { title: "XL", value: "32px" },
 //                 ],
 //               },
 //             },
 //           ],
 //         },
+
 //         {
 //           name: "fontFamily",
 //           title: "Font Family",
@@ -153,80 +161,28 @@
 // }
 
 
-
+ 
 export default {
-  name: "hero",
-  title: "Hero Section",
+  name: "customSection",
+  title: "Custom Section",
   type: "document",
 
   fields: [
-    /* ================= NAME ================= */
-    {
-      name: "name",
-      title: "Name (Rich Text)",
-      type: "array",
-      of: [richTextBlock()],
-    },
-
-    /* ================= ROLE ================= */
-    {
-      name: "role",
-      title: "Role (Rich Text)",
-      type: "array",
-      of: [richTextBlock()],
-    },
-
-    /* ================= TAGLINE ================= */
-    {
-      name: "tagline",
-      title: "Tagline (Rich Text)",
-      type: "array",
-      of: [richTextBlock()],
-    },
-
-    /* ================= IMAGE ================= */
-    {
-      name: "heroImage",
-      title: "Hero Image",
-      type: "image",
-      options: { hotspot: true },
-    },
+    /* ================= SECTION SETTINGS ================= */
 
     {
-      name: "imageShape",
-      title: "Hero Image Shape",
+      name: "title",
+      title: "Section Title",
       type: "string",
-      options: {
-        list: [
-          { title: "Circle", value: "circle" },
-          { title: "Square", value: "square" },
-          { title: "Rectangle", value: "rectangle" },
-          { title: "Star", value: "star" },
-          { title: "Diamond", value: "diamond" },
-        ],
-        layout: "radio",
-      },
-      initialValue: "circle",
     },
 
-    /* ================= IMAGE POSITION ================= */
     {
-      name: "imagePosition",
-      title: "Image Position",
+      name: "slug",
+      title: "Section Slug",
       type: "string",
-      options: {
-        list: [
-          { title: "Left", value: "left" },
-          { title: "Right", value: "right" },
-          { title: "Top", value: "top" },
-          { title: "Bottom", value: "bottom" },
-        ],
-        layout: "radio",
-      },
-      initialValue: "right",
+      description: "Example: gallery, testimonials",
     },
 
-    /* ================= TEXT ALIGN ================= */
     {
       name: "textAlign",
       title: "Text Alignment",
@@ -242,23 +198,109 @@ export default {
       initialValue: "left",
     },
 
-    /* ================= BACKGROUND COLOR ================= */
+    {
+      name: "contentWidth",
+      title: "Content Width",
+      type: "string",
+      options: {
+        list: [
+          { title: "Full Width", value: "full" },
+          { title: "Medium", value: "medium" },
+          { title: "Small Centered", value: "small" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "medium",
+    },
+
     {
       name: "backgroundColor",
-      title: "Section Background Color",
+      title: "Background Color",
       type: "string",
-      description: "Enter HEX color (Example: #0f172a)",
+      description: "Example: #0f172a or white",
     },
 
-    /* ================= RESUME ================= */
+    /* ================= CONTENT BUILDER ================= */
+
     {
-      name: "resumeFile",
-      title: "Resume PDF",
-      type: "file",
-      options: { accept: ".pdf" },
+      name: "content",
+      title: "Content (Rich Builder)",
+      type: "array",
+      of: [
+        richTextBlock(),
+
+        /* 🔥 Single Image */
+        {
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            {
+              name: "imageAlign",
+              title: "Image Alignment",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Left", value: "left" },
+                  { title: "Center", value: "center" },
+                  { title: "Right", value: "right" },
+                ],
+                layout: "radio",
+              },
+              initialValue: "center",
+            },
+          ],
+        },
+
+        /* 🔥 Image Gallery */
+        {
+          type: "object",
+          name: "imageGallery",
+          title: "Image Gallery",
+          fields: [
+            {
+              name: "shape",
+              title: "Image Shape",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Rectangle", value: "rectangle" },
+                  { title: "Square", value: "square" },
+                  { title: "Circle", value: "circle" },
+                  { title: "Diamond", value: "diamond" },
+                  { title: "Hexagon", value: "hexagon" },
+                  { title: "Star", value: "star" },
+                ],
+                layout: "radio",
+              },
+              initialValue: "rectangle",
+            },
+
+            {
+              name: "galleryAlign",
+              title: "Gallery Alignment",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Left", value: "left" },
+                  { title: "Center", value: "center" },
+                  { title: "Right", value: "right" },
+                ],
+                layout: "radio",
+              },
+              initialValue: "center",
+            },
+
+            {
+              name: "images",
+              title: "Images",
+              type: "array",
+              of: [{ type: "image", options: { hotspot: true } }],
+            },
+          ],
+        },
+      ],
     },
 
-    /* ================= SHOW ================= */
     {
       name: "showSection",
       title: "Show Section",
@@ -268,10 +310,7 @@ export default {
   ],
 };
 
-
-/* ===================================================== */
-/* 🔥 RICH TEXT BLOCK */
-/* ===================================================== */
+/* ================= RICH TEXT BLOCK ================= */
 
 function richTextBlock() {
   return {
@@ -291,7 +330,6 @@ function richTextBlock() {
         { title: "Italic", value: "em" },
         { title: "Underline", value: "underline" },
         { title: "Strike", value: "strike-through" },
-        { title: "Code", value: "code" },
       ],
 
       annotations: [
@@ -315,6 +353,7 @@ function richTextBlock() {
             },
           ],
         },
+
         {
           name: "fontSize",
           title: "Font Size",
@@ -325,15 +364,16 @@ function richTextBlock() {
               type: "string",
               options: {
                 list: [
-                  { title: "Small", value: "20px" },
-                  { title: "Medium", value: "28px" },
-                  { title: "Large", value: "36px" },
-                  { title: "XL", value: "48px" },
+                  { title: "Small", value: "14px" },
+                  { title: "Medium", value: "18px" },
+                  { title: "Large", value: "24px" },
+                  { title: "XL", value: "32px" },
                 ],
               },
             },
           ],
         },
+
         {
           name: "fontFamily",
           title: "Font Family",

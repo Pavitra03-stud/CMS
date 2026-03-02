@@ -4,13 +4,15 @@ export default {
   type: "document",
 
   fields: [
+
     /* =========================
-       BASIC SITE INFO
+       SITE TITLE (RICH TEXT)
     ========================= */
     {
       name: "siteTitle",
-      title: "Site Title",
-      type: "string",
+      title: "Site Title (Rich Text)",
+      type: "array",
+      of: [richTextBlock()],
     },
 
     {
@@ -68,22 +70,20 @@ export default {
     },
 
     /* =========================
-       PROFILE AVATAR (NEW)
+       PROFILE AVATAR
     ========================= */
     {
       name: "profileImage",
       title: "Profile Avatar",
       type: "image",
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
     },
 
     {
       name: "profileRole",
-      title: "Profile Role / Subtitle",
-      type: "string",
-      description: "Example: Frontend Developer",
+      title: "Profile Role (Rich Text)",
+      type: "array",
+      of: [richTextBlock()],
     },
 
     {
@@ -94,7 +94,7 @@ export default {
     },
 
     /* =========================
-       MENU ITEMS
+       MENU ITEMS (RICH LABEL)
     ========================= */
     {
       name: "menuItems",
@@ -106,8 +106,9 @@ export default {
           fields: [
             {
               name: "label",
-              title: "Label",
-              type: "string",
+              title: "Label (Rich Text)",
+              type: "array",
+              of: [richTextBlock()],
             },
             {
               name: "link",
@@ -132,3 +133,84 @@ export default {
     },
   ],
 };
+
+
+/* =========================
+   REUSABLE RICH TEXT BLOCK
+========================= */
+function richTextBlock() {
+  return {
+    type: "block",
+    styles: [
+      { title: "Normal", value: "normal" },
+      { title: "Heading 1", value: "h1" },
+      { title: "Heading 2", value: "h2" },
+    ],
+    marks: {
+      decorators: [
+        { title: "Bold", value: "strong" },
+        { title: "Italic", value: "em" },
+        { title: "Underline", value: "underline" },
+        { title: "Strike", value: "strike-through" },
+      ],
+      annotations: [
+        {
+          name: "textColor",
+          title: "Text Color",
+          type: "object",
+          fields: [
+            {
+              name: "color",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Accent", value: "accent" },
+                  { title: "Blue", value: "blue" },
+                  { title: "Pink", value: "pink" },
+                  { title: "White", value: "white" },
+                  { title: "Black", value: "black" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "fontSize",
+          title: "Font Size",
+          type: "object",
+          fields: [
+            {
+              name: "size",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Small", value: "14px" },
+                  { title: "Medium", value: "16px" },
+                  { title: "Large", value: "20px" },
+                ],
+              },
+            },
+          ],
+        },
+        {
+          name: "fontFamily",
+          title: "Font Family",
+          type: "object",
+          fields: [
+            {
+              name: "family",
+              type: "string",
+              options: {
+                list: [
+                  { title: "Poppins", value: "'Poppins', sans-serif" },
+                  { title: "Inter", value: "'Inter', sans-serif" },
+                  { title: "Montserrat", value: "'Montserrat', sans-serif" },
+                ],
+              },
+            },
+          ],
+        },
+      ],
+    },
+  };
+}
