@@ -13,10 +13,10 @@ export default {
       type: "string",
       options: {
         list: [
-          { title: "Text Left – Form Right", value: "row" },
-          { title: "Form Left – Text Right", value: "row-reverse" },
-          { title: "Text Top – Form Bottom", value: "column" },
-          { title: "Form Top – Text Bottom", value: "column-reverse" },
+          { title: "Text Left - Form Right", value: "row" },
+          { title: "Form Left - Text Right", value: "row-reverse" },
+          { title: "Text Top - Form Bottom", value: "column" },
+          { title: "Form Top - Text Bottom", value: "column-reverse" },
         ],
         layout: "radio",
       },
@@ -72,9 +72,7 @@ export default {
       title: "Contact Image",
       type: "image",
       hidden: ({ document }) => !document?.showImage,
-      options: {
-        hotspot: true,
-      },
+      options: { hotspot: true },
     },
 
     {
@@ -150,20 +148,6 @@ export default {
       initialValue: "100%",
     },
 
-    {
-      name: "contactOrder",
-      title: "Contact Field Order",
-      type: "array",
-      of: [{ type: "string" }],
-      options: {
-        list: [
-          { title: "Email", value: "email" },
-          { title: "Phone", value: "phone" },
-          { title: "Address", value: "address" },
-        ],
-      },
-    },
-
     /* ================= CONTENT ================= */
 
     {
@@ -172,6 +156,12 @@ export default {
       type: "array",
       of: [richBlock()],
     },
+    {
+      name: "headingColor",
+      title: "Heading Color",
+      type: "string",
+      initialValue: "#2E241B",
+    },
 
     {
       name: "description",
@@ -179,10 +169,135 @@ export default {
       type: "array",
       of: [richBlock()],
     },
+    {
+      name: "descriptionColor",
+      title: "Description Color",
+      type: "string",
+      initialValue: "#5F5F5F",
+    },
+    {
+              name: "labelColor",
+              title: "Label Color",
+              type: "string",
+              initialValue: "#2E241B",
+            },
+            {
+              name: "valueColor",
+              title: "Value Color",
+              type: "string",
+              initialValue: "#666666",
+            },
+            {
+              name: "formBackground",
+              title: "Form Background",
+              type: "string",
+              initialValue: "#FFFFFF",
+            },
+            {
+              name: "formBorderColor",
+              title: "Form Border",
+              type: "string",
+              initialValue: "#E5E5E5",
+            },
+            {
+              name: "inputBackground",
+              title: "Input Background",
+              type: "string",
+              initialValue: "#FFFFFF",
+            },
+             {
+              name: "inputTextColor",
+              title: "Input Text Color",
+              type: "string",
+              initialValue: "#2E241B",
+            },
+            {
+              name: "placeholderColor",
+              title: "Placeholder Color",
+              type: "string",
+              initialValue: "#999999",
+            },
+            {
+              name: "buttonBackground",
+              title: "Button Background",
+              type: "string",
+              initialValue: "#C89B3C",
+            },
+            {
+              name: "buttonTextColor",
+              title: "Button Text Color",
+              type: "string",
+              initialValue: "#FFFFFF",
+            },
+            {
+              name: "buttonHoverBackground",
+              title: "Button Hover Background",
+              type: "string",
+              initialValue: "#A67C22",
+            },
+            {
+              name: "cardBackground",
+              title: "Card Background",
+              type: "string",
+              initialValue: "#FFFFFF",
+            },
+            {
+              name: "cardShadow",
+              title: "Card Shadow",
+              type: "string",
+              initialValue: "0 12px 40px rgba(0,0,0,.12)",
+            },
+            {
+              name: "overlayColor",
+              title: "Overlay Color",
+              type: "string",
+              initialValue: "rgba(255,255,255,.75)",
+            },
 
-    richContactField("email", "Email"),
-    richContactField("phone", "Phone"),
-    richContactField("address", "Address"),
+    /* ================= FULLY DYNAMIC CONTACT ITEMS ================= */
+
+    {
+      name: "contactItems",
+      title: "Contact Items",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            {
+              name: "label",
+              title: "Label (Example: Email, Instagram, LinkedIn)",
+              type: "string",
+            },
+            
+            {
+              name: "value",
+              title: "Value (Rich Text)",
+              type: "array",
+              of: [richBlock()],
+            },
+            {
+              name: "link",
+              title: "Optional Link",
+              type: "string",
+              description:
+                "Examples: mailto:abc@gmail.com | tel:+9198765xxxxx | https://instagram.com/username",
+            },
+            {
+              name: "openInNewTab",
+              title: "Open In New Tab?",
+              type: "boolean",
+              initialValue: false,
+            },
+          ],
+          preview: {
+            select: {
+              title: "label",
+            },
+          },
+        },
+      ],
+    },
 
     {
       name: "showSection",
@@ -194,7 +309,7 @@ export default {
 };
 
 
-/* ================= REUSABLE RICH BLOCK ================= */
+/* ================= RICH TEXT BLOCK ================= */
 
 function richBlock() {
   return {
@@ -214,86 +329,6 @@ function richBlock() {
         { title: "Strike", value: "strike-through" },
         { title: "Code", value: "code" },
       ],
-      annotations: [
-        textColorAnnotation(),
-        fontSizeAnnotation(),
-        fontFamilyAnnotation(),
-      ],
     },
-  };
-}
-
-function richContactField(name, title) {
-  return {
-    name,
-    title: `${title} (Rich Text)`,
-    type: "array",
-    of: [richBlock()],
-  };
-}
-
-function textColorAnnotation() {
-  return {
-    name: "textColor",
-    title: "Text Color",
-    type: "object",
-    fields: [
-      {
-        name: "color",
-        type: "string",
-        options: {
-          list: [
-            { title: "Accent", value: "accent" },
-            { title: "Blue", value: "blue" },
-            { title: "Pink", value: "pink" },
-            { title: "White", value: "white" },
-            { title: "Black", value: "black" },
-          ],
-        },
-      },
-    ],
-  };
-}
-
-function fontSizeAnnotation() {
-  return {
-    name: "fontSize",
-    title: "Font Size",
-    type: "object",
-    fields: [
-      {
-        name: "size",
-        type: "string",
-        options: {
-          list: [
-            { title: "Small", value: "14px" },
-            { title: "Medium", value: "16px" },
-            { title: "Large", value: "20px" },
-            { title: "XL", value: "24px" },
-          ],
-        },
-      },
-    ],
-  };
-}
-
-function fontFamilyAnnotation() {
-  return {
-    name: "fontFamily",
-    title: "Font Family",
-    type: "object",
-    fields: [
-      {
-        name: "family",
-        type: "string",
-        options: {
-          list: [
-            { title: "Poppins", value: "'Poppins', sans-serif" },
-            { title: "Inter", value: "'Inter', sans-serif" },
-            { title: "Montserrat", value: "'Montserrat', sans-serif" },
-          ],
-        },
-      },
-    ],
   };
 }

@@ -7,6 +7,9 @@ import contact from './contact'
 import siteSettings from './siteSettings'
 //import typography from "./typography";
 import customSection from "./customSection";
+import page from "./page";
+import heroContentBlock from "./heroContentBlock";
+import Footer from "./footer";
 //import section from './section'
 //import pageBuilder from './pageBuilder'
-export const schemaTypes = [hero,about,navigation,services,projectSection,contact,siteSettings,customSection]
+export const schemaTypes = [hero,about,navigation,services,projectSection,contact,siteSettings,customSection,page,heroContentBlock,Footer]

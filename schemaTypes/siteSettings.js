@@ -4,7 +4,7 @@ export default {
   type: "document",
 
   fields: [
-    /* 🌈 GLOBAL BACKGROUND */
+    /* GLOBAL BACKGROUND */
     {
       name: "backgroundColor",
       title: "Site Background Color",
@@ -13,7 +13,7 @@ export default {
       initialValue: "#0f172a"
     },
 
-    /* 📝 GLOBAL PLACEHOLDERS */
+    /*  GLOBAL PLACEHOLDERS */
     {
       name: "placeholders",
       title: "Form Placeholders",
